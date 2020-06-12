@@ -1,0 +1,5 @@
+# ninja log v5
+0	16	0	clean	9992afb1f91dc381
+1	588	613638713	CMakeFiles/tiny_renderer_execute.dir/src/firstexample.cpp.obj	598e98612c4a0b4
+9	753	613638713	CMakeFiles/tiny_renderer_execute.dir/src/tgaimage.cpp.obj	3e7eefc1a366e71f
+753	1812	613638714	tiny_renderer_execute.exe	45ff402f70ff1d8c

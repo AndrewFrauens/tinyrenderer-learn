@@ -61,12 +61,16 @@ int main(int argc, char** argv) {
         image.flip_vertically(); // i want to have the origin at the left bottom corner of the image
         image.write_tga_file("output1.tga");
 
-        TGAImage im2 = TGAImage(100, 100, TGAImage::RGB);
-        line(30, 30, 40, 70, im2, red);
-        line(30, 30, 70, 40, im2, yellow);
-        line(70, 40, 40, 70, im2, blue);
-        im2.flip_vertically();
-        im2.write_tga_file("output2.tga");
+
+        //Test building many of the same image
+        for (int i = 0; i < 1000; i++) {
+            TGAImage im2 = TGAImage(100, 100, TGAImage::RGB);
+            line(30, 30, 40, 70, im2, red);
+            line(30, 30, 70, 40, im2, yellow);
+            line(70, 40, 40, 70, im2, blue);
+            im2.flip_vertically();
+            im2.write_tga_file("output2.tga");
+        }
 
 
 

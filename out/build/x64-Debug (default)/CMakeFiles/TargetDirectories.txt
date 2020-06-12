@@ -1,0 +1,5 @@
+C:/Users/andre/source/repos/tinyrenderer-learn/out/build/x64-Debug (default)/CMakeFiles/tiny_renderer_execute.dir
+C:/Users/andre/source/repos/tinyrenderer-learn/out/build/x64-Debug (default)/CMakeFiles/edit_cache.dir
+C:/Users/andre/source/repos/tinyrenderer-learn/out/build/x64-Debug (default)/CMakeFiles/rebuild_cache.dir
+C:/Users/andre/source/repos/tinyrenderer-learn/out/build/x64-Debug (default)/src/CMakeFiles/edit_cache.dir
+C:/Users/andre/source/repos/tinyrenderer-learn/out/build/x64-Debug (default)/src/CMakeFiles/rebuild_cache.dir
