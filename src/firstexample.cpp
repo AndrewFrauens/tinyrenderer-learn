@@ -1,20 +1,53 @@
+#include <algorithm>
+#include <cmath>
+
+
 #include "tgaimage.h"
 
 
-const TGAColor white = TGAColor(255, 255, 255, 255);
-const TGAColor red   = TGAColor(255, 0,   0,   255);
+TGAColor& const white   = TGAColor(255, 255, 255, 255);
+TGAColor& const black   = TGAColor(  0,   0,   0, 255);
 
-float interpolate(int& x0, int& x1, float& ratio) {
-    return x0 + (x1 - x0) * ratio;
-}
+TGAColor& const red     = TGAColor(255,   0,   0,  255);
+TGAColor& const green   = TGAColor(  0, 255,   0, 255);
+TGAColor& const blue    = TGAColor(  0,   0, 255, 255);
 
-void line(int x0, int y0, int x1, int y1, TGAImage& image, TGAColor color) {
-    int x;
-    int y;
-    for (float t = 0.0; t < 1.0; t += 0.01) {
-        x = interpolate(x0, x1, t);
-        y = interpolate(y0, y1, t);
-        image.set(x, y, color);
+TGAColor& const yellow  = TGAColor(255, 255,   0, 255);
+TGAColor& const cyan    = TGAColor(  0, 255, 255, 255);
+TGAColor& const magenta = TGAColor(255,   0, 255, 255);
+
+
+void line(int x0, int y0, int x1, int y1, TGAImage& image, TGAColor &color) {
+    bool steep = false;
+    if (std::abs(x1 - x0) < std::abs(y1 - y0)) {
+        std::swap(x0, y0);
+        std::swap(x1, y1);
+        steep = true;
+    }
+
+    if (x0 > x1) {
+        std::swap(x0, x1);
+        std::swap(y0, y1);
+    }
+
+    int dx = x1 - x0;
+    int dy = y1 - y0;
+    int derror2 = std::abs(dy) * 2;
+    int error2 = 0;
+    int y = y0;
+
+    for (int x = x0; x <= x1; x++) {
+        if (steep){
+            image.set(y, x, color);
+        }
+        else {
+            image.set(x, y, color);
+        }
+        error2 += derror2;
+        if (error2 > dx) {
+            y += (y1 > y0 ? 1 : -1);
+            error2 -= dx * 2;
+        }
     }
 
 }
@@ -29,7 +62,9 @@ int main(int argc, char** argv) {
         image.write_tga_file("output1.tga");
 
         TGAImage im2 = TGAImage(100, 100, TGAImage::RGB);
-        line(39, 23, 80, 40, im2, red);
+        line(30, 30, 40, 70, im2, red);
+        line(30, 30, 70, 40, im2, yellow);
+        line(70, 40, 40, 70, im2, blue);
         im2.flip_vertically();
         im2.write_tga_file("output2.tga");
 
